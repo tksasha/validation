@@ -1,4 +1,4 @@
-package validation
+package validator
 
 import (
 	"strconv"
@@ -12,25 +12,25 @@ const (
 	invalid  = "is invalid"
 )
 
-type Validation struct {
+type Validator struct {
 	Errors Errors
 }
 
-func New() *Validation {
-	return &Validation{
+func New() *Validator {
+	return &Validator{
 		Errors: Errors{},
 	}
 }
 
-func (v *Validation) HasErrors() bool {
+func (v *Validator) HasErrors() bool {
 	return v.Errors.exists()
 }
 
-func (v *Validation) Set(attribute, value string) {
+func (v *Validator) Set(attribute, value string) {
 	v.Errors.add(attribute, value)
 }
 
-func (v *Validation) Presence(attribute, value string) string {
+func (v *Validator) Presence(attribute, value string) string {
 	if value == "" {
 		v.Errors.add(attribute, required)
 	}
@@ -38,7 +38,7 @@ func (v *Validation) Presence(attribute, value string) string {
 	return value
 }
 
-func (v *Validation) Integer(attribute, value string) int {
+func (v *Validator) Integer(attribute, value string) int {
 	if value == "" {
 		return 0
 	}
@@ -53,7 +53,7 @@ func (v *Validation) Integer(attribute, value string) int {
 	return digit
 }
 
-func (v *Validation) Formula(attribute, formula string) (string, float64) {
+func (v *Validator) Formula(attribute, formula string) (string, float64) {
 	if formula == "" {
 		v.Errors.add(attribute, required)
 
@@ -70,7 +70,7 @@ func (v *Validation) Formula(attribute, formula string) (string, float64) {
 	return formula, sum
 }
 
-func (v *Validation) Boolean(attribute, value string) bool {
+func (v *Validator) Boolean(attribute, value string) bool {
 	switch value {
 	case "true":
 		return true
@@ -83,7 +83,7 @@ func (v *Validation) Boolean(attribute, value string) bool {
 	}
 }
 
-func (v *Validation) Date(attribute, value string) time.Time {
+func (v *Validator) Date(attribute, value string) time.Time {
 	if value == "" {
 		v.Errors.add(attribute, required)
 

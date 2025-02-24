@@ -1,0 +1,10 @@
+github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
+github.com/google/go-cmp v0.5.9/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
+github.com/mrxrsd/gojacego v1.0.0 h1:xxPb0fKX0JdV+3iSUP7gYmg+uogUjQhx0qxGNvOU0o0=
+github.com/mrxrsd/gojacego v1.0.0/go.mod h1:ZKyj95Kcm8aI1h5M6AUSV2HuTHf/l5YWeImgbLPP/PU=
+github.com/tksasha/calculator v0.0.8 h1:5KFmV0E6IEIY/gQjC9oLO8ASjNgvhZ+KLoHfkRBWIX4=
+github.com/tksasha/calculator v0.0.8/go.mod h1:dmh0Gmk/gu/S3qsVr06wOUZQI5WcPwQVYNdhDke4/kY=
+github.com/tksasha/xstrings v0.0.4 h1:HnjqEHyFa9N8dHGmddSi3U1L0NcJUI1R9fwUfwkrTIs=
+github.com/tksasha/xstrings v0.0.4/go.mod h1:217iIw2FzncxVqDdKPNkPl51IgUESFom1XuyD6cEtpw=
+gotest.tools/v3 v3.5.2 h1:7koQfIKdy+I8UTetycgUqXWSDwpgv193Ka+qRsmBY8Q=
+gotest.tools/v3 v3.5.2/go.mod h1:LtdLGcnqToBH83WByAAi/wiwSFCArdFIUV/xxN4pcjA=

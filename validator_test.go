@@ -1,32 +1,32 @@
-package validation_test
+package validator_test
 
 import (
 	"testing"
 	"time"
 
-	"github.com/tksasha/balance/pkg/validation"
+	"github.com/tksasha/validator"
 	"gotest.tools/v3/assert"
 )
 
 func TestGetterAndSetter(t *testing.T) {
 	t.Run("returns empty string when no errors", func(t *testing.T) {
-		validation := validation.New()
+		validator := validator.New()
 
-		assert.Assert(t, !validation.HasErrors())
+		assert.Assert(t, !validator.HasErrors())
 	})
 
 	t.Run("returns formatted error when set", func(t *testing.T) {
-		validation := validation.New()
+		validator := validator.New()
 
-		validation.Set("name", "must be unique")
+		validator.Set("name", "must be unique")
 
-		assert.Error(t, validation.Errors, "name: must be unique")
+		assert.Error(t, validator.Errors, "name: must be unique")
 	})
 }
 
 func TestValidatePresence(t *testing.T) {
 	t.Run("add error for blank value", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		_ = validate.Presence("name", "")
 
@@ -34,7 +34,7 @@ func TestValidatePresence(t *testing.T) {
 	})
 
 	t.Run("passes when value is present", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		_ = validate.Presence("name", "Bruce Wayne")
 
@@ -44,7 +44,7 @@ func TestValidatePresence(t *testing.T) {
 
 func TestValidateInteger(t *testing.T) {
 	t.Run("add error for invalid value", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Integer("age", "abc")
 
@@ -53,7 +53,7 @@ func TestValidateInteger(t *testing.T) {
 	})
 
 	t.Run("converts string to integer when value is valid", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Integer("age", "33")
 
@@ -64,7 +64,7 @@ func TestValidateInteger(t *testing.T) {
 
 func TestValidateFormula(t *testing.T) {
 	t.Run("add error for blank value", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		formula, res := validate.Formula("formula", "")
 
@@ -74,7 +74,7 @@ func TestValidateFormula(t *testing.T) {
 	})
 
 	t.Run("add error for invalid value", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		formula, res := validate.Formula("formula", "abc")
 
@@ -84,7 +84,7 @@ func TestValidateFormula(t *testing.T) {
 	})
 
 	t.Run("calculate result when value is valid", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		formula, res := validate.Formula("formula", "2+3")
 
@@ -96,7 +96,7 @@ func TestValidateFormula(t *testing.T) {
 
 func TestValidateBoolean(t *testing.T) {
 	t.Run("returns true for 'true' string", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Boolean("visible", "true")
 
@@ -105,7 +105,7 @@ func TestValidateBoolean(t *testing.T) {
 	})
 
 	t.Run("returns false for 'false' string", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Boolean("visible", "false")
 
@@ -114,7 +114,7 @@ func TestValidateBoolean(t *testing.T) {
 	})
 
 	t.Run("returns false for empty string", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Boolean("visible", "")
 
@@ -123,7 +123,7 @@ func TestValidateBoolean(t *testing.T) {
 	})
 
 	t.Run("adds error for invalid value", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Boolean("visible", "xxx")
 
@@ -134,7 +134,7 @@ func TestValidateBoolean(t *testing.T) {
 
 func TestValidateDate(t *testing.T) {
 	t.Run("returns error when value is blank", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Date("date", "")
 
@@ -143,7 +143,7 @@ func TestValidateDate(t *testing.T) {
 	})
 
 	t.Run("returns error when value is invalid", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Date("date", "abc")
 
@@ -152,7 +152,7 @@ func TestValidateDate(t *testing.T) {
 	})
 
 	t.Run("parse date when value is valid", func(t *testing.T) {
-		validate := validation.New()
+		validate := validator.New()
 
 		res := validate.Date("date", "2025-02-04")
 
