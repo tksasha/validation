@@ -9,8 +9,16 @@ import (
 
 type Errors map[string][]string //nolint:errname
 
-func (e Errors) Get(attribute string) []string {
-	return e[attribute]
+func (e Errors) Set(attribute, message string) {
+	attribute = xstrings.ToSnakeCase(attribute)
+
+	e[attribute] = append(e[attribute], message)
+}
+
+func (e Errors) Get(attribute string) string {
+	messages := e[attribute]
+
+	return fmt.Sprintf("%s: %s", attribute, strings.Join(messages, ", "))
 }
 
 func (e Errors) Has(attribute string) bool {
@@ -20,17 +28,11 @@ func (e Errors) Has(attribute string) bool {
 func (e Errors) Error() string {
 	errors := []string{}
 
-	for attribute, messages := range e {
-		errors = append(errors, fmt.Sprintf("%s: %s", attribute, strings.Join(messages, ", ")))
+	for attribute := range e {
+		errors = append(errors, e.Get(attribute))
 	}
 
 	return strings.Join(errors, "; ")
-}
-
-func (e Errors) add(attribute, message string) {
-	attribute = xstrings.ToSnakeCase(attribute)
-
-	e[attribute] = append(e[attribute], message)
 }
 
 func (e Errors) exists() bool {

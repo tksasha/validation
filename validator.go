@@ -27,12 +27,12 @@ func (v *Validator) HasErrors() bool {
 }
 
 func (v *Validator) Set(attribute, value string) {
-	v.Errors.add(attribute, value)
+	v.Errors.Set(attribute, value)
 }
 
 func (v *Validator) Presence(attribute, value string) string {
 	if value == "" {
-		v.Errors.add(attribute, required)
+		v.Errors.Set(attribute, required)
 	}
 
 	return value
@@ -45,7 +45,7 @@ func (v *Validator) Integer(attribute, value string) int {
 
 	digit, err := strconv.Atoi(value)
 	if err != nil {
-		v.Errors.add(attribute, invalid)
+		v.Errors.Set(attribute, invalid)
 
 		return 0
 	}
@@ -55,14 +55,14 @@ func (v *Validator) Integer(attribute, value string) int {
 
 func (v *Validator) Formula(attribute, formula string) (string, float64) {
 	if formula == "" {
-		v.Errors.add(attribute, required)
+		v.Errors.Set(attribute, required)
 
 		return formula, 0.0
 	}
 
 	sum, err := calculator.Calculate(formula)
 	if err != nil {
-		v.Errors.add(attribute, invalid)
+		v.Errors.Set(attribute, invalid)
 
 		return formula, 0.0
 	}
@@ -77,7 +77,7 @@ func (v *Validator) Boolean(attribute, value string) bool {
 	case "false", "":
 		return false
 	default:
-		v.Errors.add(attribute, invalid)
+		v.Errors.Set(attribute, invalid)
 
 		return false
 	}
@@ -85,14 +85,14 @@ func (v *Validator) Boolean(attribute, value string) bool {
 
 func (v *Validator) Date(attribute, value string) time.Time {
 	if value == "" {
-		v.Errors.add(attribute, required)
+		v.Errors.Set(attribute, required)
 
 		return time.Time{}
 	}
 
 	date, err := time.Parse(time.DateOnly, value)
 	if err != nil {
-		v.Errors.add(attribute, invalid)
+		v.Errors.Set(attribute, invalid)
 
 		return time.Time{}
 	}
