@@ -8,11 +8,19 @@ import (
 )
 
 func TestGet(t *testing.T) {
-	actual := build(t).Get("name")
+	t.Run("when error exists", func(t *testing.T) {
+		actual := build(t).Get("name")
 
-	expected := "name: is required, must be unique"
+		expected := "name: is required, must be unique"
 
-	assert.Equal(t, actual, expected)
+		assert.Equal(t, *actual, expected)
+	})
+
+	t.Run("when error does not exist", func(t *testing.T) {
+		message := build(t).Get("amount")
+
+		assert.Assert(t, message == nil)
+	})
 }
 
 func TestError(t *testing.T) {
