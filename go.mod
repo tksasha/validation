@@ -1,4 +1,4 @@
-module github.com/tksasha/validator
+module github.com/tksasha/validation
 
 go 1.24.0
 

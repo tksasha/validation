@@ -1,4 +1,4 @@
-package validator
+package validation
 
 import (
 	"fmt"
@@ -41,6 +41,6 @@ func (e Errors) Error() string {
 	return strings.Join(errors, "; ")
 }
 
-func (e Errors) exists() bool {
+func (e Errors) Exists() bool {
 	return len(e) != 0
 }

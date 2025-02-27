@@ -1,9 +1,9 @@
-package validator_test
+package validation_test
 
 import (
 	"testing"
 
-	"github.com/tksasha/validator"
+	"github.com/tksasha/validation"
 	"gotest.tools/v3/assert"
 )
 
@@ -37,10 +37,26 @@ func TestHas(t *testing.T) {
 	assert.Assert(t, !errors.Has("amount"))
 }
 
-func build(t *testing.T) validator.Errors {
+func TestExists(t *testing.T) {
+	t.Run("when empty", func(t *testing.T) {
+		errors := validation.Errors{}
+
+		assert.Assert(t, !errors.Exists())
+	})
+
+	t.Run("when not empty", func(t *testing.T) {
+		errors := validation.Errors{}
+
+		errors.Set("name", "is required")
+
+		assert.Assert(t, errors.Exists())
+	})
+}
+
+func build(t *testing.T) validation.Errors {
 	t.Helper()
 
-	errors := validator.Errors{}
+	errors := validation.Errors{}
 
 	errors.Set("age", "must be greater than 18")
 
