@@ -4,7 +4,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shopspring/decimal"
 	"github.com/tksasha/validation"
 	"gotest.tools/v3/assert"
 )
@@ -54,7 +53,7 @@ func TestValidationFormula(t *testing.T) {
 		formula, res := validation.Formula("formula", "")
 
 		assert.Equal(t, formula, "")
-		assert.Assert(t, eq(t, res, 0.0))
+		assert.Equal(t, res, 0.0)
 		assert.Error(t, validation.Errors, "formula: is required")
 	})
 
@@ -64,7 +63,7 @@ func TestValidationFormula(t *testing.T) {
 		formula, res := validation.Formula("formula", "abc")
 
 		assert.Equal(t, formula, "abc")
-		assert.Assert(t, eq(t, res, 0.0))
+		assert.Equal(t, res, 0.0)
 		assert.Error(t, validation.Errors, "formula: is invalid")
 	})
 
@@ -74,7 +73,7 @@ func TestValidationFormula(t *testing.T) {
 		formula, res := validation.Formula("formula", "2+3")
 
 		assert.Equal(t, formula, "2+3")
-		assert.Assert(t, eq(t, res, 5.0))
+		assert.Equal(t, res, 5.0)
 		assert.Assert(t, !validation.Errors.Exists())
 	})
 }
@@ -155,10 +154,4 @@ func date(t *testing.T, value string) time.Time {
 	}
 
 	return date
-}
-
-func eq(t *testing.T, d decimal.Decimal, f float64) bool {
-	t.Helper()
-
-	return decimal.NewFromFloat(f).Equal(d)
 }
