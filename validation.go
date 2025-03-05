@@ -4,6 +4,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/shopspring/decimal"
 	"github.com/tksasha/calculator"
 )
 
@@ -45,18 +46,18 @@ func (v *Validation) Integer(attribute, value string) int {
 	return digit
 }
 
-func (v *Validation) Formula(attribute, formula string) (string, float64) {
+func (v *Validation) Formula(attribute, formula string) (string, decimal.Decimal) {
 	if formula == "" {
 		v.Errors.Set(attribute, required)
 
-		return formula, 0.0
+		return formula, decimal.NewFromInt(0)
 	}
 
 	sum, err := calculator.Calculate(formula)
 	if err != nil {
 		v.Errors.Set(attribute, invalid)
 
-		return formula, 0.0
+		return formula, decimal.NewFromInt(0)
 	}
 
 	return formula, sum
