@@ -143,6 +143,15 @@ func TestValidationDate(t *testing.T) {
 		assert.Equal(t, res, date(t, "2025-02-04"))
 		assert.Assert(t, !validation.Errors.Exists())
 	})
+
+	t.Run("when date is in a different allowed format", func(t *testing.T) {
+		validation := validation.New()
+
+		res := validation.Date("date", "09.03.2025", "02.01.2006")
+
+		assert.Equal(t, res, date(t, "2025-03-09"))
+		assert.Assert(t, !validation.Errors.Exists())
+	})
 }
 
 func date(t *testing.T, value string) time.Time {

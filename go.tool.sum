@@ -517,6 +517,8 @@ github.com/timonwong/loggercheck v0.10.1 h1:uVZYClxQFpw55eh+PIoqM7uAOHMrhVcDoWDe
 github.com/timonwong/loggercheck v0.10.1/go.mod h1:HEAWU8djynujaAVX7QI65Myb8qgfcZ1uKbdpg3ZzKl8=
 github.com/tksasha/calculator v0.0.8 h1:5KFmV0E6IEIY/gQjC9oLO8ASjNgvhZ+KLoHfkRBWIX4=
 github.com/tksasha/calculator v0.0.8/go.mod h1:dmh0Gmk/gu/S3qsVr06wOUZQI5WcPwQVYNdhDke4/kY=
+github.com/tksasha/calculator v0.0.10 h1:SCEd7GfPO/4VUFTns4l0SfSKSXjsxS6EZ8tHa81tw1U=
+github.com/tksasha/calculator v0.0.10/go.mod h1:AFFebfXmytHY0NMDdhSz/utu6ZmUVD0+I1BzjF1ic5I=
 github.com/tksasha/xstrings v0.0.6 h1:hsJ3t2xNFCU0G8ic7GZ4age7hmvgWg6B6yHREMRDv24=
 github.com/tksasha/xstrings v0.0.6/go.mod h1:217iIw2FzncxVqDdKPNkPl51IgUESFom1XuyD6cEtpw=
 github.com/tomarrell/wrapcheck/v2 v2.10.0 h1:SzRCryzy4IrAH7bVGG4cK40tNUhmVmMDuJujy4XwYDg=

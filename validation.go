@@ -75,14 +75,20 @@ func (v *Validation) Boolean(attribute, value string) bool {
 	}
 }
 
-func (v *Validation) Date(attribute, value string) time.Time {
+func (v *Validation) Date(attribute, value string, layouts ...string) time.Time {
 	if value == "" {
 		v.Errors.Set(attribute, required)
 
 		return time.Time{}
 	}
 
-	date, err := time.Parse(time.DateOnly, value)
+	layout := time.DateOnly
+
+	if len(layouts) == 1 {
+		layout = layouts[0]
+	}
+
+	date, err := time.Parse(layout, value)
 	if err != nil {
 		v.Errors.Set(attribute, invalid)
 

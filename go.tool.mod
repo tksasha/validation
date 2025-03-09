@@ -3,7 +3,7 @@ module github.com/tksasha/validation
 go 1.24.1
 
 require (
-	github.com/tksasha/calculator v0.0.8
+	github.com/tksasha/calculator v0.0.10
 	github.com/tksasha/xstrings v0.0.6
 	gotest.tools/v3 v3.5.2
 )
